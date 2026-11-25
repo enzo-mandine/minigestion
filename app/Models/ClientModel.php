@@ -9,7 +9,14 @@ class ClientModel extends Model
     protected $table         = 'clients';
     protected $primaryKey    = 'id';
     protected $returnType    = 'array';
-    protected $allowedFields = ['nom', 'prenom', 'email', 'telephone', 'entreprise', 'ville'];
+    protected $allowedFields = [
+        'nom',
+        'prenom',
+        'email',
+        'telephone',
+        'entreprise',
+        'ville'
+    ];
     protected $useTimestamps = true;
 
     protected $validationRules = [

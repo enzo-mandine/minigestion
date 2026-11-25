@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\ClientModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
+use CodeIgniter\HTTP\RedirectResponse;
 
 class Clients extends BaseController
 {
@@ -48,7 +49,8 @@ class Clients extends BaseController
     // GET /clients/new
     public function new(): string
     {
-        return view('clients/form', ['title' => 'Nouveau client', 'client' => null]);
+        return view('clients/form', [
+            'title' => 'Nouveau client', 'client' => null]);
     }
 
     // POST /clients

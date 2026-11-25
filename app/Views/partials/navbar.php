@@ -21,6 +21,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link <?= url_is('products*') ? 'active' : '' ?>" href="<?= site_url('products') ?>">
+                            <i class="bi bi-box"></i> Produits
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link <?= url_is('about') ? 'active' : '' ?>" href="<?= site_url('about') ?>">
                             <i class="bi bi-info-circle"></i> À propos
                         </a>
