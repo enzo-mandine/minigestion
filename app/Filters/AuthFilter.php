@@ -5,8 +5,6 @@ namespace App\Filters;
 use CodeIgniter\Filters\FilterInterface;
 use codeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
-use DeepCopy\Filter\Filter;
-use Override;
 
 class AuthFilter implements FilterInterface
 {

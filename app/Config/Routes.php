@@ -5,7 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /** @var RouteCollection $routes */
 $routes->get('login', 'Auth::login');
 $routes->post('login', 'Auth::attemptLogin', [
-    'filter' => 'throttle:10:60'
+    'filter' => 'throttle:10,60'
 ]);
 $routes->post('logout', 'Auth::logout');
 

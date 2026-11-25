@@ -60,7 +60,8 @@ class Auth extends BaseController
         ]);
 
         $url = session('redirect_url') ?? site_url('/');
-
+        session()->remove('redirect_url');
+        
         return redirect()->to($url)->with('success', 'Bienvenue ' . $user['nom'] . '!');
     }
 
