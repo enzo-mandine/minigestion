@@ -22,7 +22,7 @@ $fields = [
             '20',
         ],
     ],
-    'stock'       => ['label' => 'Entreprise', 'type' => 'integer'],
+    'stock'       => ['label' => 'Stock', 'type' => 'number'],
     'actif'       => ['label' => 'Actif',      'type' => 'text'],
 ];
 ?>
