@@ -29,7 +29,7 @@ $labels = [
         </div>
 
         <div class="card-footer bg-white text-end">
-            <a href="<?= site_url('products/' . esc($product['id'] . '/edit', 'url')) ?>" class="btn btn-primary">
+            <a href="<?= site_url('products/' . $product['id'] . '/edit') ?>" class="btn btn-primary">
                 Modifier
             </a>
             <a href="<?= previous_url() ?? site_url('products') ?>" class="btn btn-outline-secondary">Fermer</a>
