@@ -64,7 +64,7 @@ $fields = [
                             <input type="<?= $f['type'] ?>" id="<?= $name ?>" name="<?= $name ?>"
                                 class="form-control <?= isset($errors[$name]) ? 'is-invalid' : '' ?>"
                                 value="<?= esc(old($name, $product[$name] ?? '')) ?>"
-                                step="<?= $name === "prix_ht" ? '0.01' : '' ?>">
+                                <?= $name === 'prix_ht' ? 'step="0.01" min="0"' : '' ?>>
                             <div class="invalid-feedback"><?= esc($errors[$name] ?? '') ?></div>
                         </div>
                     <?php endif ?>

@@ -13,7 +13,7 @@ class Produits extends BaseController
     private function findOrFail(int $id): array
     {
         return $this->products->find($id)
-            ?? throw PageNotFoundException::forPageNotFound("Produit n°#$id introuvable");
+            ?? throw PageNotFoundException::forPageNotFound("Produit introuvable");
     }
 
     private function donneesFormulaire(): array
