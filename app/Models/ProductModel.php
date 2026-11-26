@@ -26,7 +26,7 @@ class ProductModel extends Model
         ],
         'reference' => [
             'label' => 'Référence',
-            'rules' => 'required|regex_match[/^PRD-[0-9]{4}$/]|max_length[20]|is_unique[products.reference,id, {id}]',
+            'rules' => 'required|regex_match[/^PRD-[0-9]{4}$/]|max_length[20]|is_unique[products.reference,id,{id}]',
         ],
         'nom' => [
             'label' => 'Nom',
