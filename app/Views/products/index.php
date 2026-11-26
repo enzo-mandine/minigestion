@@ -50,8 +50,8 @@
                         </td>
                         <td><?= esc($p['nom']) ?></td>
                         <td><?= esc(character_limiter($p['description'] ?? '', 80, '…')) ?></td>
-                        <td><?= number_to_currency((float) $p['prix_ht'], 'EUR') ?></td>
-                        <td><?= number_to_currency($p['prix_ht'] * (1 + ($p['taux_tva'] / 100)), 'EUR') ?></td>
+                        <td><?= number_to_currency((float) $p['prix_ht'], 'EUR', null, 2) ?></td>
+                        <td><?= number_to_currency(round($p['prix_ht'] * (1 + $p['taux_tva'] / 100), 2), 'EUR', null, 2) ?></td>
                         <td><?= esc($p['stock']) ?></td>
                         <td><?= esc($p['actif']) ?></td>
                         <td class="text-end text-nowrap">
