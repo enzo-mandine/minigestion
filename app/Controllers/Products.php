@@ -16,6 +16,17 @@ class Products extends BaseController
             ?? throw PageNotFoundException::forPageNotFound("Produit n°#$id introuvable");
     }
 
+    private function donneesFormulaire(): array
+    {
+        $data = $this->request->getPost(self::FIELDS);
+
+        $data['reference'] = mb_strtoupper(trim((string) $data['reference']));
+        $data['prix_ht'] = str_replace(',', '.', (string) $data['prix_ht']);
+        $data['actif'] = $data['actif'] ?? '0';
+
+        return $data;
+    }
+
     public function __construct()
     {
         $this->products = model(ProductModel::class);
@@ -52,7 +63,7 @@ class Products extends BaseController
 
     public function create()
     {
-        $data = $this->request->getPost(self::FIELDS);
+        $data = $this->donneesFormulaire();
 
         if (! $this->products->insert($data)) {
             return redirect()->back()->withInput()->with('errors', $this->products->errors());
@@ -73,7 +84,7 @@ class Products extends BaseController
     {
         $this->findOrFail($id);
 
-        $data       = $this->request->getPost(self::FIELDS);
+        $data = $this->donneesFormulaire();
         $data['id'] = $id;
 
         if (! $this->products->save($data)) {
