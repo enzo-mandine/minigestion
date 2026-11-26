@@ -66,7 +66,7 @@
 
                 <?php if (empty($products)): ?>
                     <tr>
-                        <td colspan="6" class="text-center text-muted py-4">Aucun produit trouvé.</td>
+                        <td colspan="8" class="text-center text-muted py-4">Aucun produit trouvé.</td>
                     </tr>
                 <?php endif ?>
             </tbody>
