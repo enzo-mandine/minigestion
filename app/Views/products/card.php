@@ -4,8 +4,13 @@
 
 <?php
 $labels = [
-    'prenom'     => 'Prénom',
-    'telephone'  => 'Téléphone',
+    'reference'     => 'Référence',
+    'nom'  => 'Nom',
+    'description'  => 'Description',
+    'prix_ht'  => 'Prix H.T.',
+    'taux_tva'  => 'Taux T.V.A.',
+    'stock'  => 'Stock',
+    'actif'  => 'Actif',
     'created_at' => 'Date de création',
     'updated_at' => 'Dernière modification',
 ];

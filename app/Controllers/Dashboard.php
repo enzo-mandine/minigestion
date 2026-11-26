@@ -4,6 +4,7 @@
 namespace App\Controllers;
 
 use App\Models\ClientModel;
+use App\Models\ProductModel;
 
 class Dashboard extends BaseController
 {
@@ -13,7 +14,7 @@ class Dashboard extends BaseController
             'title' => 'Tableau de bord',
             'stats' => [
                 'clients'  => model(ClientModel::class)->countAllResults(),
-                'produits' => 0,
+                'produits' => model(ProductModel::class)->countAllResults(),
                 'factures' => 0,
             ],
         ];

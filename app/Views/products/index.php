@@ -49,9 +49,9 @@
                             </a>
                         </td>
                         <td><?= esc($p['nom']) ?></td>
-                        <td><?= esc($p['description']) ?></td>
-                        <td><?= esc($p['prix_ht']) ?> €</td>
-                        <td><?= number_format($p['prix_ht'] * (1 + ($p['taux_tva'] / 100)), 2, ',', ' ') ?> €</td>
+                        <td><?= character_limiter($p['description'], 150) ?></td>
+                        <td><?= number_to_currency((float) $p['prix_ht'], 'EUR') ?></td>
+                        <td><?= number_to_currency($p['prix_ht'] * (1 + ($p['taux_tva'] / 100)), 'EUR') ?></td>
                         <td><?= esc($p['stock']) ?></td>
                         <td><?= esc($p['actif']) ?></td>
                         <td class="text-end text-nowrap">

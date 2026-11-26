@@ -40,10 +40,9 @@ $fields = [
                         <div class="col-md-6">
                             <label for="<?= $name ?>" class="form-label"><?= $f['label'] ?></label>
 
-                            <?php $currentValue = old($name, $product[$name] ?? ''); ?>
+                            <?php $currentValue = old($name, $product[$name] ?? '20'); ?>
 
-                            <select id="<?= $name ?>" name="<?= $name ?>" class="form-control <?= isset($errors[$name]) ? 'is-invalid' : '' ?>">
-                                <option value="">--Veuillez choisir une option--</option>
+                            <select id="<?= $name ?>" name="<?= $name ?>" class="form-select <?= isset($errors[$name]) ? 'is-invalid' : '' ?>">
                                 <?php foreach ($f['options'] as $value) : ?>
                                     <option value="<?= esc($value) ?>" <?= ($currentValue == $value) ? 'selected' : '' ?>>
                                         <?= esc($value) ?> %
@@ -64,7 +63,8 @@ $fields = [
                             <label for="<?= $name ?>" class="form-label"><?= $f['label'] ?></label>
                             <input type="<?= $f['type'] ?>" id="<?= $name ?>" name="<?= $name ?>"
                                 class="form-control <?= isset($errors[$name]) ? 'is-invalid' : '' ?>"
-                                value="<?= esc(old($name, $product[$name] ?? '')) ?>">
+                                value="<?= esc(old($name, $product[$name] ?? '')) ?>"
+                                step="<?= $name === "prix_ht" ? '0.01' : '' ?>">
                             <div class="invalid-feedback"><?= esc($errors[$name] ?? '') ?></div>
                         </div>
                     <?php endif ?>

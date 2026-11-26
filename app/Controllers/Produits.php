@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\ProductModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
-class Products extends BaseController
+class Produits extends BaseController
 {
     private ProductModel $products;
     private const FIELDS = ['reference', 'nom', 'description', 'prix_ht', 'taux_tva', 'stock', 'actif'];
@@ -38,6 +38,7 @@ class Products extends BaseController
         $q = trim((string) $this->request->getGet('q'));
         $actifs = $this->request->getGet('actifs') === '1';
 
+
         if ($q !== '') {
             $this->products->groupStart()
                 ->like('nom', $q)
@@ -49,6 +50,9 @@ class Products extends BaseController
             $this->products->where('actif', 1);
         }
 
+        helper('number');
+        helper('text');
+        
         return view('products/index', [
             'title'   => 'Produits',
             'products' => $this->products->orderBy('nom')->paginate(10),

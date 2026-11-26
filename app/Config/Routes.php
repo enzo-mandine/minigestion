@@ -20,13 +20,13 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
     $routes->post('clients/(:num)/update', 'Clients::update/$1');
     $routes->post('clients/(:num)/delete', 'Clients::delete/$1');
 
-    $routes->get('products', 'Products::index');
-    $routes->get('products/new', 'Products::new');
-    $routes->post('products', 'Products::create');
-    $routes->get('products/(:num)/show', 'Products::show/$1');
-    $routes->get('products/(:num)/edit', 'Products::edit/$1');
-    $routes->post('products/(:num)/update', 'Products::update/$1');
-    $routes->post('products/(:num)/delete', 'Products::delete/$1');
+    $routes->get('products', 'Produits::index');
+    $routes->get('products/new', 'Produits::new');
+    $routes->post('products', 'Produits::create');
+    $routes->get('products/(:num)/show', 'Produits::show/$1');
+    $routes->get('products/(:num)/edit', 'Produits::edit/$1');
+    $routes->post('products/(:num)/update', 'Produits::update/$1');
+    $routes->post('products/(:num)/delete', 'Produits::delete/$1');
 
     $routes->get('about', 'About::index');
 });
