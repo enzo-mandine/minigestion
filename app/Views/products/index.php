@@ -14,7 +14,7 @@
         <div class="input-group-text bg-white">
             <input <?= $actifs ? 'checked' : '' ?> onchange="this.form.submit()"
                 class="form-check-input mt-0 me-2" type="checkbox" id="actifs" name="actifs" value="1">
-            <label class="form-check-label" for="actifs" style="cursor: pointer;">Actif</label>
+            <label class="form-check-label" for="actifs" style="cursor: pointer;">Actifs seulement</label>
         </div>
         <input type="search" name="q" class="form-control" placeholder="Rechercher un nom ou une référence."
             value="<?= esc($q) ?>">
@@ -52,8 +52,20 @@
                         <td><?= esc(character_limiter($p['description'] ?? '', 80, '…')) ?></td>
                         <td><?= number_to_currency((float) $p['prix_ht'], 'EUR', null, 2) ?></td>
                         <td><?= number_to_currency(round($p['prix_ht'] * (1 + $p['taux_tva'] / 100), 2), 'EUR', null, 2) ?></td>
-                        <td><?= esc($p['stock']) ?></td>
-                        <td><?= esc($p['actif']) ?></td>
+                        <td>
+                            <?php if ($p['stock'] == 0): ?>
+                                <span class="badge text-bg-danger"><i class="bi bi-boxes"></i></span>
+                            <?php elseif ($p['stock'] <= 5): ?>
+                                <span class="badge text-bg-warning"><i class="bi bi-boxes"></i></span>
+                            <?php else : ?>
+                                <span class="badge text-bg-success"><i class="bi bi-boxes"></i></span>
+                            <?php endif ?>
+                        </td>
+                        <?php if ($p['actif'] == '1'): ?>
+                            <td><span class="badge text-bg-primary">Actif</span></td>
+                        <?php else : ?>
+                            <td><span class="badge text-bg-secondary">Inactif</span></td>
+                        <?php endif ?>
                         <td class="text-end text-nowrap">
                             <a href="<?= site_url('produits/' . $p['id'] . '/edit') ?>"
                                 class="btn btn-sm btn-outline-primary" title="Modifier">
