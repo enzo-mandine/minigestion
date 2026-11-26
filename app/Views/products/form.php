@@ -52,6 +52,13 @@ $fields = [
                             </select>
                             <div class="invalid-feedback"><?= esc($errors[$name] ?? '') ?></div>
                         </div>
+                    <?php elseif ($name === 'actif'): ?>
+                        <input type="hidden" name="actif" value="0">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="actif" name="actif" value="1"
+                                <?= old('actif', $product['actif'] ?? '1') == '1' ? 'checked' : '' ?>>
+                            <label class="form-check-label" for="actif">Actif</label>
+                        </div>
                     <?php else : ?>
                         <div class="col-md-6">
                             <label for="<?= $name ?>" class="form-label"><?= $f['label'] ?></label>
