@@ -75,7 +75,7 @@ $fields = [
                 <button class="btn btn-primary">
                     <i class="bi bi-check-lg"></i> <?= $isEdit ? 'Enregistrer' : 'Créer' ?>
                 </button>
-                <a href="<?= previous_url() ?? site_url('products') ?>" class="btn btn-outline-secondary">Annuler</a>
+                <a href="<?= site_url('products') ?>" class="btn btn-outline-secondary">Annuler</a>
             </div>
         </form>
     </div>

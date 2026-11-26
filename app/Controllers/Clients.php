@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Models\ClientModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
-use CodeIgniter\HTTP\RedirectResponse;
 
 class Clients extends BaseController
 {

@@ -42,7 +42,7 @@ class ProductModel extends Model
         ],
         'stock' => [
             'label' => 'En Stock',
-            'rules' => 'integer|greater_than_equal_to[0]',
+            'rules' => 'required|is_natural',
         ],
         'actif' => [
             'label' => 'Actif',
