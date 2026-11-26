@@ -5,15 +5,18 @@
 <?php
 $labels = [
     'reference'     => 'Référence',
-    'nom'  => 'Nom',
-    'description'  => 'Description',
-    'prix_ht'  => 'Prix H.T.',
-    'taux_tva'  => 'Taux T.V.A.',
-    'stock'  => 'Stock',
-    'actif'  => 'Actif',
-    'created_at' => 'Date de création',
+    'nom'           => 'Nom',
+    'description'   => 'Description',
+    'prix_ht'       => 'Prix H.T.',
+    'prix_ttc'      => 'Prix T.T.C.',
+    'taux_tva'      => 'Taux T.V.A.',
+    'stock'         => 'Stock',
+    'actif'         => 'Actif',
+    'created_at'    => 'Date de création',
     'updated_at' => 'Dernière modification',
 ];
+$prixTtc = round((float) $product['prix_ht'] * (1 + (float) $product['taux_tva'] / 100), 2);
+helper('number');
 ?>
 
 <div class="container my-4">
@@ -24,12 +27,67 @@ $labels = [
 
         <div class="card-body">
             <dl class="row mb-0">
-                <?php foreach (array_slice($product, 1) as $key => $value) : ?>
-                    <dt class="col-sm-4 text-muted text-capitalize">
-                        <?= esc($labels[$key] ?? str_replace('_', ' ', $key)) ?>
-                    </dt>
-                    <dd class="col-sm-8"><?= esc($value) ?></dd>
-                <?php endforeach ?>
+                <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['reference']) ?></dt>
+                <dd class="col-sm-8 fw-semibold font-monospace"><?= esc($product['reference'] ?? '') ?></dd>
+            </dl>
+
+            <dl class="row mb-0">
+                <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['nom']) ?></dt>
+                <dd class="col-sm-8"><?= esc($product['nom'] ?? '') ?></dd>
+            </dl>
+
+            <dl class="row mb-0">
+                <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['description']) ?></dt>
+                <dd class="col-sm-8"><?= esc($product['description'] ?? '') ?></dd>
+            </dl>
+
+            <dl class="row mb-0">
+                <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['prix_ht']) ?></dt>
+                <dd class="col-sm-8"><?= number_to_currency((float) ($product['prix_ht'] ?? 0), 'EUR', null, 2) ?></dd>
+            </dl>
+
+            <dl class="row mb-0">
+                <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['prix_ttc']) ?></dt>
+                <dd class="col-sm-8"><?= number_to_currency($prixTtc, 'EUR', null, 2) ?></dd>
+            </dl>
+
+            <dl class="row mb-0">
+                <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['taux_tva']) ?></dt>
+                <dd class="col-sm-8"><?= esc($product['taux_tva'] ?? '') ?> %</dd>
+            </dl>
+
+            <dl class="row mb-0">
+                <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['stock']) ?></dt>
+                <dd class="col-sm-8">
+                    <?php if ((int) $product['stock'] === 0): ?>
+                        <span class="badge text-bg-danger">Rupture</span>
+                    <?php elseif ((int) $product['stock'] < 5): ?>
+                        <span class="badge text-bg-warning"><?= esc($product['stock']) ?></span>
+                    <?php else: ?>
+                        <span class="badge text-bg-success"><?= esc($product['stock']) ?></span>
+                    <?php endif ?>
+                </dd>
+            </dl>
+
+            <dl class="row mb-0">
+                <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['actif']) ?></dt>
+                <dd class="col-sm-8">
+                    <?php if ($product['actif'] == '1'): ?>
+                        <span class="badge text-bg-primary">Actif</span>
+                    <?php else: ?>
+                        <span class="badge text-bg-secondary">Inactif</span>
+                    <?php endif ?>
+                </dd>
+            </dl>
+
+            <dl class="row mb-0">
+                <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['created_at']) ?></dt>
+                <dd class="col-sm-8"><?= esc($product['created_at'] ?? '') ?></dd>
+            </dl>
+
+            <dl class="row mb-0">
+                <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['updated_at']) ?></dt>
+                <dd class="col-sm-8"><?= esc($product['updated_at'] ?? '') ?></dd>
             </dl>
         </div>
 
@@ -37,7 +95,7 @@ $labels = [
             <a href="<?= site_url('produits/' . $product['id'] . '/edit') ?>" class="btn btn-primary">
                 Modifier
             </a>
-            <a href="<?= previous_url() ?? site_url('produits') ?>" class="btn btn-outline-secondary">Fermer</a>
+            <a href="<?= site_url('produits') ?>" class="btn btn-outline-secondary">Fermer</a>
         </div>
     </div>
 </div>

@@ -54,11 +54,11 @@
                         <td><?= number_to_currency(round($p['prix_ht'] * (1 + $p['taux_tva'] / 100), 2), 'EUR', null, 2) ?></td>
                         <td>
                             <?php if ($p['stock'] == 0): ?>
-                                <span class="badge text-bg-danger"><i class="bi bi-boxes"></i></span>
-                            <?php elseif ($p['stock'] <= 5): ?>
-                                <span class="badge text-bg-warning"><i class="bi bi-boxes"></i></span>
-                            <?php else : ?>
-                                <span class="badge text-bg-success"><i class="bi bi-boxes"></i></span>
+                                <span class="badge text-bg-danger">Rupture</span>
+                            <?php elseif ($p['stock'] < 5): ?>
+                                <span class="badge text-bg-warning"><?= esc($p['stock']) ?></span>
+                            <?php else: ?>
+                                <span class="badge text-bg-success"><?= esc($p['stock']) ?></span>
                             <?php endif ?>
                         </td>
                         <?php if ($p['actif'] == '1'): ?>

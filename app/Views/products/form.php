@@ -10,7 +10,7 @@ $action = $isEdit ? site_url('produits/' . $product['id'] . '/update') : site_ur
 $fields = [
     'nom'         => ['label' => 'Nom *',      'type' => 'text'],
     'reference'   => ['label' => 'Référence *', 'type' => 'text'],
-    'description' => ['label' => 'Description',    'type' => 'text'],
+    'description' => ['label' => 'Description',    'type' => 'textarea'],
     'prix_ht'     => ['label' => 'Prix H.T. *', 'type' => 'number'],
     'taux_tva'    => [
         'label' => 'Taux T.V.A',
@@ -52,11 +52,20 @@ $fields = [
                             <div class="invalid-feedback"><?= esc($errors[$name] ?? '') ?></div>
                         </div>
                     <?php elseif ($name === 'actif'): ?>
-                        <input type="hidden" name="actif" value="0">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="actif" name="actif" value="1"
-                                <?= old('actif', $product['actif'] ?? '1') == '1' ? 'checked' : '' ?>>
-                            <label class="form-check-label" for="actif">Actif</label>
+                        <div class="col-md-12">
+                            <input type="hidden" name="actif" value="0">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="actif" name="actif" value="1"
+                                    <?= old('actif', $product['actif'] ?? '1') == '1' ? 'checked' : '' ?>>
+                                <label class="form-check-label" for="actif">Actif</label>
+                            </div>
+                        </div>
+                    <?php elseif ($f['type'] === 'textarea'): ?>
+                        <div class="col-md-12">
+                            <label for="<?= $name ?>" class="form-label"><?= $f['label'] ?></label>
+                            <textarea id="<?= $name ?>" name="<?= $name ?>" rows="4"
+                                class="form-control <?= isset($errors[$name]) ? 'is-invalid' : '' ?>"><?= esc(old($name, $product[$name] ?? '')) ?></textarea>
+                            <div class="invalid-feedback"><?= esc($errors[$name] ?? '') ?></div>
                         </div>
                     <?php else : ?>
                         <div class="col-md-6">
