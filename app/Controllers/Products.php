@@ -41,7 +41,6 @@ class Products extends BaseController
             $this->products->groupStart()
                 ->like('nom', $q)
                 ->orLike('reference', $q)
-                ->orLike('actif', $q)
                 ->groupEnd();
         }
 
