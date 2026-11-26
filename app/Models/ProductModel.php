@@ -80,7 +80,7 @@ class ProductModel extends Model
             $d['reference'] = mb_strtoupper($d['reference']);
         }
 
-        if ($d['description'] === '') {
+        if (array_key_exists('description', $d) && $d['description'] === '') {
             $d['description'] = null;
         }
 
