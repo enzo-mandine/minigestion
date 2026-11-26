@@ -49,7 +49,7 @@
                             </a>
                         </td>
                         <td><?= esc($p['nom']) ?></td>
-                        <td><?= character_limiter($p['description'], 150) ?></td>
+                        <td><?= esc(character_limiter($p['description'] ?? '', 80, '…')) ?></td>
                         <td><?= number_to_currency((float) $p['prix_ht'], 'EUR') ?></td>
                         <td><?= number_to_currency($p['prix_ht'] * (1 + ($p['taux_tva'] / 100)), 'EUR') ?></td>
                         <td><?= esc($p['stock']) ?></td>
