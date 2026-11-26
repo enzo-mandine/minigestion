@@ -11,6 +11,11 @@
 
 <form method="get" action="<?= site_url('products') ?>" class="mb-3">
     <div class="input-group">
+        <div class="input-group-text bg-white">
+            <input <?= $actifs ? 'checked' : '' ?> onchange="this.form.submit()"
+                class="form-check-input mt-0 me-2" type="checkbox" id="actifs" name="actifs" value="1">
+            <label class="form-check-label" for="actifs" style="cursor: pointer;">Actif</label>
+        </div>
         <input type="search" name="q" class="form-control" placeholder="Rechercher un nom ou une référence."
             value="<?= esc($q) ?>">
         <button class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
@@ -36,28 +41,28 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($products as $c): ?>
+                <?php foreach ($products as $p): ?>
                     <tr>
                         <td class="fw-semibold">
-                            <a href="<?= site_url('products/' . $c['id'] . '/show') ?>" title="Voir" class="font-monospace">
-                                <?= esc($c['reference']) ?>
+                            <a href="<?= site_url('products/' . $p['id'] . '/show') ?>" title="Voir" class="font-monospace">
+                                <?= esc($p['reference']) ?>
                             </a>
                         </td>
-                        <td><?= esc($c['nom']) ?></td>
-                        <td><?= esc($c['description']) ?></td>
-                        <td><?= esc($c['prix_ht']) ?> €</td>
-                        <td><?= number_format($c['prix_ht'] * (1 + ($c['taux_tva'] / 100)), 2, ',', ' ') ?> €</td>
-                        <td><?= esc($c['stock']) ?></td>
-                        <td><?= esc($c['actif']) ?></td>
+                        <td><?= esc($p['nom']) ?></td>
+                        <td><?= esc($p['description']) ?></td>
+                        <td><?= esc($p['prix_ht']) ?> €</td>
+                        <td><?= number_format($p['prix_ht'] * (1 + ($p['taux_tva'] / 100)), 2, ',', ' ') ?> €</td>
+                        <td><?= esc($p['stock']) ?></td>
+                        <td><?= esc($p['actif']) ?></td>
                         <td class="text-end text-nowrap">
-                            <a href="<?= site_url('products/' . $c['id'] . '/edit') ?>"
+                            <a href="<?= site_url('products/' . $p['id'] . '/edit') ?>"
                                 class="btn btn-sm btn-outline-primary" title="Modifier">
                                 <i class="bi bi-pencil"></i>
                             </a>
                             <button type="button" class="btn btn-sm btn-outline-danger" title="Supprimer"
                                 data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                data-action="<?= site_url('products/' . $c['id'] . '/delete') ?>"
-                                data-name="<?= esc($c['nom']) ?>">
+                                data-action="<?= site_url('products/' . $p['id'] . '/delete') ?>"
+                                data-name="<?= esc($p['nom']) ?>">
                                 <i class="bi bi-trash"></i>
                             </button>
                         </td>
@@ -75,7 +80,7 @@
 </div>
 
 <div class="mt-3">
-    <?= $pager->only(['q'])->links('default', 'bootstrap') ?>
+    <?= $pager->only(['q', 'actifs'])->links('default', 'bootstrap') ?>
 </div>
 
 <div class="modal fade" id="deleteModal" tabindex="-1">

@@ -36,6 +36,7 @@ class Products extends BaseController
     public function index(): string
     {
         $q = trim((string) $this->request->getGet('q'));
+        $actifs = $this->request->getGet('actifs') === '1';
 
         if ($q !== '') {
             $this->products->groupStart()
@@ -44,9 +45,14 @@ class Products extends BaseController
                 ->groupEnd();
         }
 
+        if ($actifs) {
+            $this->products->where('actif', 1);
+        }
+
         return view('products/index', [
             'title'   => 'Produits',
             'products' => $this->products->orderBy('nom')->paginate(10),
+            'actifs' => $actifs,
             'pager'   => $this->products->pager,
             'q'       => $q,
         ]);
