@@ -34,10 +34,10 @@ $labels = [
         </div>
 
         <div class="card-footer bg-white text-end">
-            <a href="<?= site_url('products/' . $product['id'] . '/edit') ?>" class="btn btn-primary">
+            <a href="<?= site_url('produits/' . $product['id'] . '/edit') ?>" class="btn btn-primary">
                 Modifier
             </a>
-            <a href="<?= previous_url() ?? site_url('products') ?>" class="btn btn-outline-secondary">Fermer</a>
+            <a href="<?= previous_url() ?? site_url('produits') ?>" class="btn btn-outline-secondary">Fermer</a>
         </div>
     </div>
 </div>

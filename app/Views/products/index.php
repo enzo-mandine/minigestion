@@ -4,12 +4,12 @@
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="h3 mb-0">Produits</h1>
-    <a href="<?= site_url('products/new') ?>" class="btn btn-primary">
+    <a href="<?= site_url('produits/new') ?>" class="btn btn-primary">
         <i class="bi bi-plus-lg"></i> Nouveau produit
     </a>
 </div>
 
-<form method="get" action="<?= site_url('products') ?>" class="mb-3">
+<form method="get" action="<?= site_url('produits') ?>" class="mb-3">
     <div class="input-group">
         <div class="input-group-text bg-white">
             <input <?= $actifs ? 'checked' : '' ?> onchange="this.form.submit()"
@@ -20,7 +20,7 @@
             value="<?= esc($q) ?>">
         <button class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
         <?php if ($q !== ''): ?>
-            <a href="<?= site_url('products') ?>" class="btn btn-outline-secondary">Effacer</a>
+            <a href="<?= site_url('produits') ?>" class="btn btn-outline-secondary">Effacer</a>
         <?php endif ?>
     </div>
 </form>
@@ -44,7 +44,7 @@
                 <?php foreach ($products as $p): ?>
                     <tr>
                         <td class="fw-semibold">
-                            <a href="<?= site_url('products/' . $p['id'] . '/show') ?>" title="Voir" class="font-monospace">
+                            <a href="<?= site_url('produits/' . $p['id'] . '/show') ?>" title="Voir" class="font-monospace">
                                 <?= esc($p['reference']) ?>
                             </a>
                         </td>
@@ -55,13 +55,13 @@
                         <td><?= esc($p['stock']) ?></td>
                         <td><?= esc($p['actif']) ?></td>
                         <td class="text-end text-nowrap">
-                            <a href="<?= site_url('products/' . $p['id'] . '/edit') ?>"
+                            <a href="<?= site_url('produits/' . $p['id'] . '/edit') ?>"
                                 class="btn btn-sm btn-outline-primary" title="Modifier">
                                 <i class="bi bi-pencil"></i>
                             </a>
                             <button type="button" class="btn btn-sm btn-outline-danger" title="Supprimer"
                                 data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                data-action="<?= site_url('products/' . $p['id'] . '/delete') ?>"
+                                data-action="<?= site_url('produits/' . $p['id'] . '/delete') ?>"
                                 data-name="<?= esc($p['nom']) ?>">
                                 <i class="bi bi-trash"></i>
                             </button>

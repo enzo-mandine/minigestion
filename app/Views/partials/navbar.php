@@ -21,7 +21,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?= url_is('products*') ? 'active' : '' ?>" href="<?= site_url('products') ?>">
+                        <a class="nav-link <?= url_is('produits*') ? 'active' : '' ?>" href="<?= site_url('produits') ?>">
                             <i class="bi bi-box"></i> Produits
                         </a>
                     </li>

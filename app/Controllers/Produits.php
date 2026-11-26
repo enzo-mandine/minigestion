@@ -2,12 +2,12 @@
 
 namespace App\Controllers;
 
-use App\Models\ProductModel;
+use App\Models\ProduitModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Produits extends BaseController
 {
-    private ProductModel $products;
+    private ProduitModel $products;
     private const FIELDS = ['reference', 'nom', 'description', 'prix_ht', 'taux_tva', 'stock', 'actif'];
 
     private function findOrFail(int $id): array
@@ -29,10 +29,10 @@ class Produits extends BaseController
 
     public function __construct()
     {
-        $this->products = model(ProductModel::class);
+        $this->products = model(ProduitModel::class);
     }
 
-    // GET /clients
+    // GET /produits
     public function index(): string
     {
         $q = trim((string) $this->request->getGet('q'));
@@ -78,7 +78,7 @@ class Produits extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->products->errors());
         }
 
-        return redirect()->to('products')->with('success', 'Produit créé avec succès.');
+        return redirect()->to('produits')->with('success', 'Produit créé avec succès.');
     }
 
     public function edit(int $id): string
@@ -100,7 +100,7 @@ class Produits extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->products->errors());
         }
 
-        return redirect()->to('products')->with('success', 'Produit modifié avec succès.');
+        return redirect()->to('produits')->with('success', 'Produit modifié avec succès.');
     }
 
     public function delete(int $id)
@@ -108,7 +108,7 @@ class Produits extends BaseController
         $this->findOrFail($id);
         $this->products->delete($id);
 
-        return redirect()->to('products')->with('success', 'Produit supprimé.');
+        return redirect()->to('produits')->with('success', 'Produit supprimé.');
     }
 
     public function show(int $id)

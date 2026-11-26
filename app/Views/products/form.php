@@ -5,7 +5,7 @@
 <?php
 $errors = session('errors') ?? [];
 $isEdit = $product !== null;
-$action = $isEdit ? site_url('products/' . $product['id'] . '/update') : site_url('products');
+$action = $isEdit ? site_url('produits/' . $product['id'] . '/update') : site_url('produits');
 
 $fields = [
     'nom'         => ['label' => 'Nom *',      'type' => 'text'],
@@ -75,7 +75,7 @@ $fields = [
                 <button class="btn btn-primary">
                     <i class="bi bi-check-lg"></i> <?= $isEdit ? 'Enregistrer' : 'Créer' ?>
                 </button>
-                <a href="<?= site_url('products') ?>" class="btn btn-outline-secondary">Annuler</a>
+                <a href="<?= site_url('produits') ?>" class="btn btn-outline-secondary">Annuler</a>
             </div>
         </form>
     </div>

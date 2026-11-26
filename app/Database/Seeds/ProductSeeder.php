@@ -27,6 +27,6 @@ class ProductSeeder extends Seeder
             ];
         }
 
-        $this->db->table('products')->insertBatch($data);
+        $this->db->table('produits')->insertBatch($data);
     }
 }
