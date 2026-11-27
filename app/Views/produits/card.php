@@ -53,7 +53,7 @@ helper('number');
 
             <dl class="row mb-0">
                 <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['taux_tva']) ?></dt>
-                <dd class="col-sm-8"><?= esc($produit['taux_tva'] ?? '') ?> %</dd>
+                <dd class="col-sm-8"><?= esc(number_format((float) $produit['taux_tva'], 1, ',', '')) ?> %</dd>
             </dl>
 
             <dl class="row mb-0">
@@ -82,12 +82,12 @@ helper('number');
 
             <dl class="row mb-0">
                 <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['created_at']) ?></dt>
-                <dd class="col-sm-8"><?= esc($produit['created_at'] ?? '') ?></dd>
+                <dd class="col-sm-8"><?= esc(date('d/m/Y à H:i', strtotime($produit['created_at'])) ?? '') ?></dd>
             </dl>
 
             <dl class="row mb-0">
                 <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['updated_at']) ?></dt>
-                <dd class="col-sm-8"><?= esc($produit['updated_at'] ?? '') ?></dd>
+                <dd class="col-sm-8"><?= esc(date('d/m/Y à H:i', strtotime($produit['updated_at'])) ?? '') ?></dd>
             </dl>
         </div>
 

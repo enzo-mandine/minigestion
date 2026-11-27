@@ -6,9 +6,6 @@
 
 <div class="row g-3">
     <?php foreach ($stats as $label => $valeur): ?>
-        <?php if ($label === 'ruptures') {
-            continue;
-        } ?>
         <div class="col-md-4">
             <div class="card shadow-sm border-0">
                 <div class="card-body">
@@ -20,7 +17,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="text-muted text-uppercase small">Ruptures</div>
-                                <div class="display-6 fw-bold text-danger"><?= esc($stats['ruptures']) ?></div>
+                                <div class="display-6 fw-bold text-danger"><?= esc($ruptures) ?></div>
                             </div>
                         </div>
                     <?php else: ?>
