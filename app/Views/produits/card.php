@@ -15,7 +15,7 @@ $labels = [
     'created_at'    => 'Date de création',
     'updated_at' => 'Dernière modification',
 ];
-$prixTtc = round((float) $product['prix_ht'] * (1 + (float) $product['taux_tva'] / 100), 2);
+$prixTtc = round((float) $produit['prix_ht'] * (1 + (float) $produit['taux_tva'] / 100), 2);
 helper('number');
 ?>
 
@@ -28,22 +28,22 @@ helper('number');
         <div class="card-body">
             <dl class="row mb-0">
                 <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['reference']) ?></dt>
-                <dd class="col-sm-8 fw-semibold font-monospace"><?= esc($product['reference'] ?? '') ?></dd>
+                <dd class="col-sm-8 fw-semibold font-monospace"><?= esc($produit['reference'] ?? '') ?></dd>
             </dl>
 
             <dl class="row mb-0">
                 <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['nom']) ?></dt>
-                <dd class="col-sm-8"><?= esc($product['nom'] ?? '') ?></dd>
+                <dd class="col-sm-8"><?= esc($produit['nom'] ?? '') ?></dd>
             </dl>
 
             <dl class="row mb-0">
                 <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['description']) ?></dt>
-                <dd class="col-sm-8"><?= esc($product['description'] ?? '') ?></dd>
+                <dd class="col-sm-8"><?= esc($produit['description'] ?? '') ?></dd>
             </dl>
 
             <dl class="row mb-0">
                 <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['prix_ht']) ?></dt>
-                <dd class="col-sm-8"><?= number_to_currency((float) ($product['prix_ht'] ?? 0), 'EUR', null, 2) ?></dd>
+                <dd class="col-sm-8"><?= number_to_currency((float) ($produit['prix_ht'] ?? 0), 'EUR', null, 2) ?></dd>
             </dl>
 
             <dl class="row mb-0">
@@ -53,18 +53,18 @@ helper('number');
 
             <dl class="row mb-0">
                 <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['taux_tva']) ?></dt>
-                <dd class="col-sm-8"><?= esc($product['taux_tva'] ?? '') ?> %</dd>
+                <dd class="col-sm-8"><?= esc($produit['taux_tva'] ?? '') ?> %</dd>
             </dl>
 
             <dl class="row mb-0">
                 <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['stock']) ?></dt>
                 <dd class="col-sm-8">
-                    <?php if ((int) $product['stock'] === 0): ?>
+                    <?php if ((int) $produit['stock'] === 0): ?>
                         <span class="badge text-bg-danger">Rupture</span>
-                    <?php elseif ((int) $product['stock'] < 5): ?>
-                        <span class="badge text-bg-warning"><?= esc($product['stock']) ?></span>
+                    <?php elseif ((int) $produit['stock'] < 5): ?>
+                        <span class="badge text-bg-warning"><?= esc($produit['stock']) ?></span>
                     <?php else: ?>
-                        <span class="badge text-bg-success"><?= esc($product['stock']) ?></span>
+                        <span class="badge text-bg-success"><?= esc($produit['stock']) ?></span>
                     <?php endif ?>
                 </dd>
             </dl>
@@ -72,7 +72,7 @@ helper('number');
             <dl class="row mb-0">
                 <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['actif']) ?></dt>
                 <dd class="col-sm-8">
-                    <?php if ($product['actif'] == '1'): ?>
+                    <?php if ($produit['actif'] == '1'): ?>
                         <span class="badge text-bg-primary">Actif</span>
                     <?php else: ?>
                         <span class="badge text-bg-secondary">Inactif</span>
@@ -82,17 +82,17 @@ helper('number');
 
             <dl class="row mb-0">
                 <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['created_at']) ?></dt>
-                <dd class="col-sm-8"><?= esc($product['created_at'] ?? '') ?></dd>
+                <dd class="col-sm-8"><?= esc($produit['created_at'] ?? '') ?></dd>
             </dl>
 
             <dl class="row mb-0">
                 <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['updated_at']) ?></dt>
-                <dd class="col-sm-8"><?= esc($product['updated_at'] ?? '') ?></dd>
+                <dd class="col-sm-8"><?= esc($produit['updated_at'] ?? '') ?></dd>
             </dl>
         </div>
 
         <div class="card-footer bg-white text-end">
-            <a href="<?= site_url('produits/' . $product['id'] . '/edit') ?>" class="btn btn-primary">
+            <a href="<?= site_url('produits/' . $produit['id'] . '/edit') ?>" class="btn btn-primary">
                 Modifier
             </a>
             <a href="<?= site_url('produits') ?>" class="btn btn-outline-secondary">Fermer</a>

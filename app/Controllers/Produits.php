@@ -7,12 +7,12 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Produits extends BaseController
 {
-    private ProduitModel $products;
+    private ProduitModel $produits;
     private const FIELDS = ['reference', 'nom', 'description', 'prix_ht', 'taux_tva', 'stock', 'actif'];
 
     private function findOrFail(int $id): array
     {
-        return $this->products->find($id)
+        return $this->produits->find($id)
             ?? throw PageNotFoundException::forPageNotFound("Produit introuvable");
     }
 
@@ -29,7 +29,7 @@ class Produits extends BaseController
 
     public function __construct()
     {
-        $this->products = model(ProduitModel::class);
+        $this->produits = model(ProduitModel::class);
     }
 
     // GET /produits
@@ -40,14 +40,14 @@ class Produits extends BaseController
 
 
         if ($q !== '') {
-            $this->products->groupStart()
+            $this->produits->groupStart()
                 ->like('nom', $q)
                 ->orLike('reference', $q)
                 ->groupEnd();
         }
 
         if ($actifs) {
-            $this->products->where('actif', 1);
+            $this->produits->where('actif', 1);
         }
 
         helper('number');
@@ -55,9 +55,9 @@ class Produits extends BaseController
         
         return view('produits/index', [
             'title'   => 'Produits',
-            'products' => $this->products->orderBy('nom')->paginate(10),
+            'produits' => $this->produits->orderBy('nom')->paginate(10),
             'actifs' => $actifs,
-            'pager'   => $this->products->pager,
+            'pager'   => $this->produits->pager,
             'q'       => $q,
         ]);
     }
@@ -66,7 +66,7 @@ class Produits extends BaseController
     {
         return view('produits/form', [
             'title' => 'Nouveau produit',
-            'product' => null
+            'produit' => null
         ]);
     }
 
@@ -74,8 +74,8 @@ class Produits extends BaseController
     {
         $data = $this->donneesFormulaire();
 
-        if (! $this->products->insert($data)) {
-            return redirect()->back()->withInput()->with('errors', $this->products->errors());
+        if (! $this->produits->insert($data)) {
+            return redirect()->back()->withInput()->with('errors', $this->produits->errors());
         }
 
         return redirect()->to('produits')->with('success', 'Produit créé avec succès.');
@@ -85,7 +85,7 @@ class Produits extends BaseController
     {
         return view('produits/form', [
             'title'  => 'Modifier le produit',
-            'product' => $this->findOrFail($id),
+            'produit' => $this->findOrFail($id),
         ]);
     }
 
@@ -96,8 +96,8 @@ class Produits extends BaseController
         $data = $this->donneesFormulaire();
         $data['id'] = $id;
 
-        if (! $this->products->save($data)) {
-            return redirect()->back()->withInput()->with('errors', $this->products->errors());
+        if (! $this->produits->save($data)) {
+            return redirect()->back()->withInput()->with('errors', $this->produits->errors());
         }
 
         return redirect()->to('produits')->with('success', 'Produit modifié avec succès.');
@@ -106,7 +106,7 @@ class Produits extends BaseController
     public function delete(int $id)
     {
         $this->findOrFail($id);
-        $this->products->delete($id);
+        $this->produits->delete($id);
 
         return redirect()->to('produits')->with('success', 'Produit supprimé.');
     }
@@ -115,7 +115,7 @@ class Produits extends BaseController
     {
         return view('produits/card', [
             'title' => 'Fiche produit',
-            'product' => $this->findOrFail($id),
+            'produit' => $this->findOrFail($id),
         ]);
     }
 }

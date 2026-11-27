@@ -41,47 +41,47 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($products as $p): ?>
+                <?php foreach ($produits as $produit): ?>
                     <tr>
                         <td class="fw-semibold">
-                            <a href="<?= site_url('produits/' . $p['id'] . '/show') ?>" title="Voir" class="font-monospace">
-                                <?= esc($p['reference']) ?>
+                            <a href="<?= site_url('produits/' . $produit['id'] . '/show') ?>" title="Voir" class="font-monospace">
+                                <?= esc($produit['reference']) ?>
                             </a>
                         </td>
-                        <td><?= esc($p['nom']) ?></td>
-                        <td><?= esc(character_limiter($p['description'] ?? '', 80, '…')) ?></td>
-                        <td><?= number_to_currency((float) $p['prix_ht'], 'EUR', null, 2) ?></td>
-                        <td><?= number_to_currency(round($p['prix_ht'] * (1 + $p['taux_tva'] / 100), 2), 'EUR', null, 2) ?></td>
+                        <td><?= esc($produit['nom']) ?></td>
+                        <td><?= esc(character_limiter($produit['description'] ?? '', 80, '…')) ?></td>
+                        <td><?= number_to_currency((float) $produit['prix_ht'], 'EUR', null, 2) ?></td>
+                        <td><?= number_to_currency(round($produit['prix_ht'] * (1 + $produit['taux_tva'] / 100), 2), 'EUR', null, 2) ?></td>
                         <td>
-                            <?php if ($p['stock'] == 0): ?>
+                            <?php if ($produit['stock'] == 0): ?>
                                 <span class="badge text-bg-danger">Rupture</span>
-                            <?php elseif ($p['stock'] < 5): ?>
-                                <span class="badge text-bg-warning"><?= esc($p['stock']) ?></span>
+                            <?php elseif ($produit['stock'] < 5): ?>
+                                <span class="badge text-bg-warning"><?= esc($produit['stock']) ?></span>
                             <?php else: ?>
-                                <span class="badge text-bg-success"><?= esc($p['stock']) ?></span>
+                                <span class="badge text-bg-success"><?= esc($produit['stock']) ?></span>
                             <?php endif ?>
                         </td>
-                        <?php if ($p['actif'] == '1'): ?>
+                        <?php if ($produit['actif'] == '1'): ?>
                             <td><span class="badge text-bg-primary">Actif</span></td>
                         <?php else : ?>
                             <td><span class="badge text-bg-secondary">Inactif</span></td>
                         <?php endif ?>
                         <td class="text-end text-nowrap">
-                            <a href="<?= site_url('produits/' . $p['id'] . '/edit') ?>"
+                            <a href="<?= site_url('produits/' . $produit['id'] . '/edit') ?>"
                                 class="btn btn-sm btn-outline-primary" title="Modifier">
                                 <i class="bi bi-pencil"></i>
                             </a>
                             <button type="button" class="btn btn-sm btn-outline-danger" title="Supprimer"
                                 data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                data-action="<?= site_url('produits/' . $p['id'] . '/delete') ?>"
-                                data-name="<?= esc($p['nom']) ?>">
+                                data-action="<?= site_url('produits/' . $produit['id'] . '/delete') ?>"
+                                data-name="<?= esc($produit['nom']) ?>">
                                 <i class="bi bi-trash"></i>
                             </button>
                         </td>
                     </tr>
                 <?php endforeach ?>
 
-                <?php if (empty($products)): ?>
+                <?php if (empty($produits)): ?>
                     <tr>
                         <td colspan="8" class="text-center text-muted py-4">Aucun produit trouvé.</td>
                     </tr>

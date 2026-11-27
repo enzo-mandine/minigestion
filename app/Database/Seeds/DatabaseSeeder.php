@@ -10,6 +10,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call('UserSeeder');
         $this->call('ClientSeeder');
-        $this->call('ProductSeeder');
+        $this->call('ProduitSeeder');
     }
 }
