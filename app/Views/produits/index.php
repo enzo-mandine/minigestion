@@ -19,8 +19,8 @@
         <input type="search" name="q" class="form-control" placeholder="Rechercher un nom ou une référence."
             value="<?= esc($q) ?>">
         <button class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
-        <?php if ($q !== ''): ?>
-            <a href="<?= site_url('produits') ?>" class="btn btn-outline-secondary">Effacer</a>
+        <?php if ($q !== '' || $actifs == '1'): ?>
+            <a href="<?= site_url('produits') ?>" class="btn btn-outline-secondary">Réinitialiser</a>
         <?php endif ?>
     </div>
 </form>
