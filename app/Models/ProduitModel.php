@@ -52,7 +52,7 @@ class ProduitModel extends Model
 
     protected $validationMessages = [
         'reference' => [
-            'is_unique' => 'Cette référence est déjà utilisé.',
+            'is_unique' => 'Cette référence est déjà utilisée.',
             'regex_match' => 'La référence doit respecter le format PRD-1234',
         ],
     ];
