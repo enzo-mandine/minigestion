@@ -52,7 +52,7 @@
                         <td><?= esc(character_limiter($produit->description ?? '', 80, '…')) ?></td>
                         <td><?= number_to_currency($produit->prix_ht, 'EUR', null, 2) ?></td>
                         <td><?= number_to_currency($produit->prix_ttc, 'EUR', null, 2) ?></td>
-                        <?= view('partials/_badge_stock', ['produit' => $produit]) ?>
+                        <td><?= view('produits/_badge_stock', ['produit' => $produit]) ?></td>
                         <?php if ($produit->actif): ?>
                             <td><span class="badge text-bg-primary">Actif</span></td>
                         <?php else : ?>

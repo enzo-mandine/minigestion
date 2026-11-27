@@ -57,13 +57,7 @@ $labels = [
             <dl class="row mb-0">
                 <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['stock']) ?></dt>
                 <dd class="col-sm-8">
-                    <?php if ($produit->stock === 0): ?>
-                        <span class="badge text-bg-danger">Rupture</span>
-                    <?php elseif ($produit->stock < 5): ?>
-                        <span class="badge text-bg-warning"><?= esc($produit->stock) ?></span>
-                    <?php else: ?>
-                        <span class="badge text-bg-success"><?= esc($produit->stock) ?></span>
-                    <?php endif ?>
+                    <?= view('produits/_badge_stock', ['produit' => $produit]) ?>
                 </dd>
             </dl>
 
