@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use App\Entities\Produit;
 
 class ProduitModel extends Model
 {
     protected $table = 'produits';
     protected $primaryKey = 'id';
-    protected $returnType    = 'array';
+    protected $returnType    = Produit::class;
     protected $allowedFields = [
         'reference',
         'nom',

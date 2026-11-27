@@ -48,5 +48,5 @@ abstract class BaseController extends Controller
 
         helper('number');
         helper('text');
-    }
+    }   
 }

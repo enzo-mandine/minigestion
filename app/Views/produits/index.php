@@ -44,37 +44,37 @@
                 <?php foreach ($produits as $produit): ?>
                     <tr>
                         <td class="fw-semibold">
-                            <a href="<?= site_url('produits/' . $produit['id'] . '/show') ?>" title="Voir" class="font-monospace">
-                                <?= esc($produit['reference']) ?>
+                            <a href="<?= site_url('produits/' . $produit->id . '/show') ?>" title="Voir" class="font-monospace">
+                                <?= esc($produit->reference) ?>
                             </a>
                         </td>
-                        <td><?= esc($produit['nom']) ?></td>
-                        <td><?= esc(character_limiter($produit['description'] ?? '', 80, '…')) ?></td>
-                        <td><?= number_to_currency((float) $produit['prix_ht'], 'EUR', null, 2) ?></td>
-                        <td><?= number_to_currency(round($produit['prix_ht'] * (1 + $produit['taux_tva'] / 100), 2), 'EUR', null, 2) ?></td>
+                        <td><?= esc($produit->nom) ?></td>
+                        <td><?= esc(character_limiter($produit->description ?? '', 80, '…')) ?></td>
+                        <td><?= number_to_currency((float) $produit->prix_ht, 'EUR', null, 2) ?></td>
+                        <td><?= number_to_currency(round($produit->prix_ht * (1 + $produit->taux_tva / 100), 2), 'EUR', null, 2) ?></td>
                         <td>
-                            <?php if ($produit['stock'] == 0): ?>
+                            <?php if ($produit->stock == 0): ?>
                                 <span class="badge text-bg-danger">Rupture</span>
-                            <?php elseif ($produit['stock'] < 5): ?>
-                                <span class="badge text-bg-warning"><?= esc($produit['stock']) ?></span>
+                            <?php elseif ($produit->stock < 5): ?>
+                                <span class="badge text-bg-warning"><?= esc($produit->stock) ?></span>
                             <?php else: ?>
-                                <span class="badge text-bg-success"><?= esc($produit['stock']) ?></span>
+                                <span class="badge text-bg-success"><?= esc($produit->stock) ?></span>
                             <?php endif ?>
                         </td>
-                        <?php if ($produit['actif'] == '1'): ?>
+                        <?php if ($produit->actif == '1'): ?>
                             <td><span class="badge text-bg-primary">Actif</span></td>
                         <?php else : ?>
                             <td><span class="badge text-bg-secondary">Inactif</span></td>
                         <?php endif ?>
                         <td class="text-end text-nowrap">
-                            <a href="<?= site_url('produits/' . $produit['id'] . '/edit') ?>"
+                            <a href="<?= site_url('produits/' . $produit->id . '/edit') ?>"
                                 class="btn btn-sm btn-outline-primary" title="Modifier">
                                 <i class="bi bi-pencil"></i>
                             </a>
                             <button type="button" class="btn btn-sm btn-outline-danger" title="Supprimer"
                                 data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                data-action="<?= site_url('produits/' . $produit['id'] . '/delete') ?>"
-                                data-name="<?= esc($produit['nom']) ?>">
+                                data-action="<?= site_url('produits/' . $produit->id . '/delete') ?>"
+                                data-name="<?= esc($produit->nom) ?>">
                                 <i class="bi bi-trash"></i>
                             </button>
                         </td>

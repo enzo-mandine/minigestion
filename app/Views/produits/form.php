@@ -5,7 +5,7 @@
 <?php
 $errors = session('errors') ?? [];
 $isEdit = $produit !== null;
-$action = $isEdit ? site_url('produits/' . $produit['id'] . '/update') : site_url('produits');
+$action = $isEdit ? site_url('produits/' . $produit->id . '/update') : site_url('produits');
 
 $fields = [
     'nom'         => ['label' => 'Nom *',      'type' => 'text'],
@@ -40,7 +40,7 @@ $fields = [
                         <div class="col-md-6">
                             <label for="<?= $name ?>" class="form-label"><?= $f['label'] ?></label>
 
-                            <?php $currentValue = old($name, $produit[$name] ?? '20'); ?>
+                            <?php $currentValue = old($name, $produit->$name ?? '20'); ?>
 
                             <select id="<?= $name ?>" name="<?= $name ?>" class="form-select <?= isset($errors[$name]) ? 'is-invalid' : '' ?>">
                                 <?php foreach ($f['options'] as $value) : ?>
@@ -56,7 +56,7 @@ $fields = [
                             <input type="hidden" name="actif" value="0">
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" id="actif" name="actif" value="1"
-                                    <?= old('actif', $produit['actif'] ?? '1') == '1' ? 'checked' : '' ?>>
+                                    <?= old('actif', $produit->actif ?? '1') == '1' ? 'checked' : '' ?>>
                                 <label class="form-check-label" for="actif">Actif</label>
                             </div>
                         </div>
@@ -64,7 +64,7 @@ $fields = [
                         <div class="col-md-12">
                             <label for="<?= $name ?>" class="form-label"><?= $f['label'] ?></label>
                             <textarea id="<?= $name ?>" name="<?= $name ?>" rows="4"
-                                class="form-control <?= isset($errors[$name]) ? 'is-invalid' : '' ?>"><?= esc(old($name, $produit[$name] ?? '')) ?></textarea>
+                                class="form-control <?= isset($errors[$name]) ? 'is-invalid' : '' ?>"><?= esc(old($name, $produit->$name ?? '')) ?></textarea>
                             <div class="invalid-feedback"><?= esc($errors[$name] ?? '') ?></div>
                         </div>
                     <?php else : ?>
@@ -72,7 +72,7 @@ $fields = [
                             <label for="<?= $name ?>" class="form-label"><?= $f['label'] ?></label>
                             <input type="<?= $f['type'] ?>" id="<?= $name ?>" name="<?= $name ?>"
                                 class="form-control <?= isset($errors[$name]) ? 'is-invalid' : '' ?>"
-                                value="<?= esc(old($name, $produit[$name] ?? '')) ?>"
+                                value="<?= esc(old($name, $produit->$name ?? '')) ?>"
                                 <?= $name === 'prix_ht' ? 'step="0.01" min="0"' : '' ?>>
                             <div class="invalid-feedback"><?= esc($errors[$name] ?? '') ?></div>
                         </div>
