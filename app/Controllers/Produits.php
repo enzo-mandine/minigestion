@@ -53,7 +53,7 @@ class Produits extends BaseController
         helper('number');
         helper('text');
         
-        return view('products/index', [
+        return view('produits/index', [
             'title'   => 'Produits',
             'products' => $this->products->orderBy('nom')->paginate(10),
             'actifs' => $actifs,
@@ -64,7 +64,7 @@ class Produits extends BaseController
 
     public function new(): string
     {
-        return view('products/form', [
+        return view('produits/form', [
             'title' => 'Nouveau produit',
             'product' => null
         ]);
@@ -83,7 +83,7 @@ class Produits extends BaseController
 
     public function edit(int $id): string
     {
-        return view('products/form', [
+        return view('produits/form', [
             'title'  => 'Modifier le produit',
             'product' => $this->findOrFail($id),
         ]);
@@ -113,7 +113,7 @@ class Produits extends BaseController
 
     public function show(int $id)
     {
-        return view('products/card', [
+        return view('produits/card', [
             'title' => 'Fiche produit',
             'product' => $this->findOrFail($id),
         ]);
