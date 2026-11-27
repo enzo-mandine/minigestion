@@ -50,18 +50,10 @@
                         </td>
                         <td><?= esc($produit->nom) ?></td>
                         <td><?= esc(character_limiter($produit->description ?? '', 80, '…')) ?></td>
-                        <td><?= number_to_currency((float) $produit->prix_ht, 'EUR', null, 2) ?></td>
-                        <td><?= number_to_currency(round($produit->prix_ht * (1 + $produit->taux_tva / 100), 2), 'EUR', null, 2) ?></td>
-                        <td>
-                            <?php if ($produit->stock == 0): ?>
-                                <span class="badge text-bg-danger">Rupture</span>
-                            <?php elseif ($produit->stock < 5): ?>
-                                <span class="badge text-bg-warning"><?= esc($produit->stock) ?></span>
-                            <?php else: ?>
-                                <span class="badge text-bg-success"><?= esc($produit->stock) ?></span>
-                            <?php endif ?>
-                        </td>
-                        <?php if ($produit->actif == '1'): ?>
+                        <td><?= number_to_currency($produit->prix_ht, 'EUR', null, 2) ?></td>
+                        <td><?= number_to_currency($produit->prix_ttc, 'EUR', null, 2) ?></td>
+                        <?= view('partials/_badge_stock', ['produit' => $produit]) ?>
+                        <?php if ($produit->actif): ?>
                             <td><span class="badge text-bg-primary">Actif</span></td>
                         <?php else : ?>
                             <td><span class="badge text-bg-secondary">Inactif</span></td>

@@ -80,12 +80,12 @@ $labels = [
 
             <dl class="row mb-0">
                 <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['created_at']) ?></dt>
-                <dd class="col-sm-8"><?= esc($produit->created_at->format('d/m/Y') . ' à ' . $produit->created_at->format('H:i')) ?></dd>
+                <dd class="col-sm-8"><?= esc($produit->created_at?->format('d/m/Y à H:i') ?? '—') ?></dd>
             </dl>
 
             <dl class="row mb-0">
                 <dt class="col-sm-4 text-muted text-capitalize"><?= esc($labels['updated_at']) ?></dt>
-                <dd class="col-sm-8"><?= esc($produit->updated_at->format('d/m/Y') . ' à ' . $produit->updated_at->format('H:i')) ?></dd>
+                <dd class="col-sm-8"><?= esc($produit->updated_at?->format('d/m/Y à H:i') ?? '—') ?></dd>
             </dl>
         </div>
 
