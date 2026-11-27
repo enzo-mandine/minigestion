@@ -9,7 +9,6 @@ use App\Models\ProduitModel;
 class Dashboard extends BaseController
 {
     public function index(): string
-
     {
         $data = [
             'title' => 'Tableau de bord',

@@ -16,7 +16,6 @@ $labels = [
     'updated_at' => 'Dernière modification',
 ];
 $prixTtc = round((float) $produit['prix_ht'] * (1 + (float) $produit['taux_tva'] / 100), 2);
-helper('number');
 ?>
 
 <div class="container my-4">

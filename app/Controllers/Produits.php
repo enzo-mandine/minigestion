@@ -50,9 +50,6 @@ class Produits extends BaseController
             $this->produits->where('actif', 1);
         }
 
-        helper('number');
-        helper('text');
-        
         return view('produits/index', [
             'title'   => 'Produits',
             'produits' => $this->produits->orderBy('nom')->paginate(10),
