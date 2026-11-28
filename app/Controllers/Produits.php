@@ -10,7 +10,7 @@ class Produits extends BaseController
 {
     private ProduitModel $produits;
     private const FIELDS = ['reference', 'nom', 'description', 'prix_ht', 'taux_tva', 'stock', 'actif'];
-
+    
     private function findOrFail(int $id): Produit
     {
         return $this->produits->find($id)

@@ -95,8 +95,7 @@
                 <h5 class="modal-title"><i class="bi bi-exclamation-triangle text-danger"></i> Confirmer la suppression</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body">
-                Supprimer définitivement <strong id="deleteName"></strong> ?
+            <div class="modal-body">Supprimer <strong id="deleteName"></strong> ?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>

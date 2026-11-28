@@ -10,6 +10,8 @@ class ProduitModel extends Model
     protected $table = 'produits';
     protected $primaryKey = 'id';
     protected $returnType    = Produit::class;
+    protected $useSoftDeletes = true;
+    protected $deletedField = 'deleted_at';
     protected $allowedFields = [
         'reference',
         'nom',
